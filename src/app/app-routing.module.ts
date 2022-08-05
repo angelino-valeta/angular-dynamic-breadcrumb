@@ -12,10 +12,67 @@ const routes: Routes = [
       title: 'page1',
       breadcrumb: [
         {
-          label: 'Page'
+          label: 'Page1',
+          url: ''
         }
       ]
     }
+  },
+  {
+    path: '',
+    component: PageComponent,
+    data: {
+      title: 'App',
+      breadcrumb: [
+        {
+          label: 'Page1',
+          url: '' 
+        }
+      ]
+    }
+  },
+  {
+    path: 'page1/:pageOneID/page2/:pageTwoID',
+    component: Page2Component,
+    data: {
+      title: 'Page2',
+      breadcrumb: [
+        {
+          label: 'page1',
+          url: '/page1/:pageOneID'
+        },
+        {
+          label: 'Page2',
+          url: ''
+        }
+      ]
+    }
+  },
+  {
+    path: 'page1/:pageOneID/page2/:pageTwoID/page3/:pageThreeID',
+    component: Page3Component,
+    data: {
+      title: 'Page3',
+      breadcrumb: [
+        {
+          label: 'page1',
+          url: 'page1/:pageOneID'
+        },
+        {
+          label: 'page2',
+          url: 'page1/:pageOneID/page2/:pageTwoID'
+        },
+        {
+          label: 'page {{customText}}',
+          url: ''
+        }
+      ]
+    }
+  },
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: ''
   }
 ];
 
@@ -23,4 +80,10 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule { 
+  static componets = [
+    PageComponent,
+    Page2Component,
+    Page3Component
+  ]
+}
